@@ -3,7 +3,7 @@
 This repository provides an example on how to Docker to test the development of a Python application that needs to connect to an Oracle DB.
 
 # Start an Oracle XE container
-Start an Oracle XE container to be used for testing purposes:
+Start an Oracle XE container to be used for testing purposes, will be available on localhost port 1521:
 
 ```sh
 docker run --name oracle-xe -d -p 1521:1521 oracleinanutshell/oracle-xe-11g
@@ -14,9 +14,9 @@ Build a docker image based on condaforge/miniforge3 but extented with the Oracle
 docker build -t miniforge-oracle .
 ```
 
-Start Python from the image
+Start Python from the image, run on host network to connect to the oracle XE instance
 ```sh
-docker run --user 10000:0 --network host -it oracle python
+docker run --user 10000:0 --network host -it miniforge-oracle python
 ```
 
 Test the connection to Oracle from the python interpreter:
